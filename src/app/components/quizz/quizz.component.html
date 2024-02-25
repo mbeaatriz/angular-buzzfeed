@@ -1,17 +1,19 @@
 <div class="quizz-container">
   <h1>BuzzFeed</h1>
-  <h2>Você seria um herói ou um vilão?</h2>
-  <div class="quizz-questions">
-    <h2>Você seria um herói ou um vilão?</h2>
+  <h2>{{title}}</h2>
+  <div *ngIf=!finished class="quizz-questions">
+    <h2>{{questionSelected.question}}</h2>
   </div>
-  <div class="quizz-options">
-    <button class="btn">Raio</button>
-    <button class="btn">Raio</button>
-    <button class="btn">Raio</button>
-    <button class="btn">Raio</button>
-    <button class="btn">Raio</button>
+  <div *ngIf=!finished class="quizz-options">
+    <button
+      class="btn"
+      *ngFor = "let option of questionSelected.options; let i = index"
+      (click) = "playerChoose(option.alias)"
+    >
+    {{option.name}}
+    </button>
   </div>
-  <div class="quizz-results">
-    <h2>Você muito provavelmente seria um super vilão!</h2>
+  <div *ngIf=finished class="quizz-results">
+    <h2>{{answerSelected}}</h2>
   </div>
 </div>
